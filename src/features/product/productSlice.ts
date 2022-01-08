@@ -3,12 +3,20 @@ import { Products } from '../../models/product/product.api'
 
 interface ProductState {
     isLoading: boolean
+    isEdit: boolean
+    isAdd: boolean
+    isDelete: boolean
     data: Products
+    selectedData: Products
 }
 
 const initialState: ProductState = {
     isLoading: false,
-    data: []
+    isEdit: false,
+    isAdd: false,
+    isDelete: false,
+    data: [],
+    selectedData: []
 }
 
 const productSlice = createSlice({
@@ -24,11 +32,24 @@ const productSlice = createSlice({
         },
         getProductsFailed: (state) => {
             state.isLoading = false
+        },
+        editProductInprogress: (state) => {
+            state.isEdit = true
+        },
+        editProductSuccess: (state) => {
+            state.isEdit = false
+        },
+        editProductFailed: (state) => {
+            state.isEdit = false
+        },
+        setSelectedProducts: (state, { payload }: PayloadAction<Products>) => {
+            state.selectedData = payload
         }
     }
 })
 
-export const { getProductsSuccess, setIsLoading, getProductsFailed } = productSlice.actions
+export const { getProductsSuccess, setIsLoading, getProductsFailed,
+    editProductInprogress, editProductSuccess, editProductFailed, setSelectedProducts } = productSlice.actions
 
 const productReducer = productSlice.reducer;
 export default productReducer;

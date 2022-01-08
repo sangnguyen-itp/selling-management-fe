@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../hooks';
 import { setIsLoading, getProductsSuccess, getProductsFailed } from '../../features/product/productSlice';
 import listProductsAPI from '../../api/product/listProducts';
 import { Response } from '../../models/common/Response';
+import { HandleError } from '../../handleError';
 
 export default function ProductSearch() {
     // state
@@ -25,6 +26,8 @@ export default function ProductSearch() {
             }
             dispatch(getProductsSuccess(data))
         } catch (error) {
+            const err = error as Response
+            HandleError(err)
             dispatch(getProductsFailed())
         }
     }

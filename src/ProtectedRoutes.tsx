@@ -9,7 +9,6 @@ interface RequireAuthProps {
 }
 
 function RequireAuth({ isLoggedIn, children }: RequireAuthProps) {
-    console.log(isLoggedIn)
     if (!getUserAuth()) {
         return <Navigate to="/login" />;
     }

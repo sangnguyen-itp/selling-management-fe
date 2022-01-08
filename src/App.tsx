@@ -35,7 +35,7 @@ const App = () => {
                     {
                         !isLoggedIn ?
                             <Route path='/login' element={<LoginPage />} /> :
-                            <Route path='/' element={<RequireAuth isLoggedIn={isLoggedIn} children={<HomePage />} />} />
+                            <Route path='/' element={<RequireAuth isLoggedIn={isLoggedIn} children={<ProductPage />} />} />
                     }
                     <Route path='/products' element={<RequireAuth isLoggedIn={isLoggedIn} children={<ProductPage />} />} />
                 </Routes>
